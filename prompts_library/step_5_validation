@@ -1,0 +1,5 @@
+Acceptance Criteria
+    - All tests pass in headless mode
+    - Tests work across different viewports
+    - Proper assertions for each scenario
+    - Error handling tested

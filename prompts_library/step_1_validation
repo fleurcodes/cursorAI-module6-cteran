@@ -1,0 +1,16 @@
+Step 1 validation:
+
+Verify they were generated the following objects/files or how it was performed
+1 package.json with necessary dependencies
+
+2 vite.config.ts configuration
+
+3 tailwind.config.js with proper settings
+
+4 Basic folder structure: src/components/, src/assets/, etc.
+
+5 TypeScript configuration files
+
+6 Initial component examples
+
+acknowledge the following command was successfully executed /shell npm run dev 

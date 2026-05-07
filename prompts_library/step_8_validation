@@ -1,0 +1,9 @@
+Acceptance criteria:
+  - Items can be added to cart from the product listing
+  - Quantity can be changed and items removed; cart badge updates in real time
+  - Cart contents survive a page refresh
+  - Checkout form validates all fields before submission
+  - Order summary stays visible and accurate throughout checkout
+  - Successful submission lands on a unique order confirmation page
+  - Confirmation shows order number, items, address, and total
+  - Navigating back after confirmation does not re-submit the order

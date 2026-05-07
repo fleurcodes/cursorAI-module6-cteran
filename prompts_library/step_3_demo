@@ -1,0 +1,7 @@
+Step 3: Creating Demo Page
+
+Create a demo page that showcases the UserProfile component with sample data. 
+Include a few different user profiles to demonstrate the component.
+
+commands to run:
+    npm run dev

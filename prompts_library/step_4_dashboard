@@ -1,0 +1,23 @@
+Step 4 : Building a Task Management Dashboard
+Objective: Building the Responsive Dashboard
+
+Core Prompt:
+In the current application, create a responsive dashboard for a task management page. Include a sidebar navigation, main content area with task cards, statistics widgets, and a header with user menu. Use Tailwind CSS for styling with proper responsive breakpoints, dark mode support in the Navbar.tsx so it's accesible in the whole application, and accessibility features. To easily navigate between the pages, create a new /dashboard route, and include it in the current Navbar.tsx component.
+
+Key Features:
+    Sidebar Navigation: Collapsible on mobile, fixed on desktop
+    Header: User menu dropdown, notifications
+    Task Cards: Color-coded priorities, status indicators
+    Statistics Widgets: Real-time metrics display
+
+Dark Mode Toggle: Smooth theme transitions
+    Dark Mode Implementation:
+    Tailwind's dark: utility classes
+    Theme switching with localStorage persistence
+    Smooth color transitions
+    Proper contrast ratios for accessibility
+
+Responsive Breakpoints:
+    Mobile (< 640px): Stacked layout, hamburger menu
+    Tablet (640px - 1024px): Side-by-side with condensed sidebar
+    Desktop (> 1024px): Full layout with expanded sidebar

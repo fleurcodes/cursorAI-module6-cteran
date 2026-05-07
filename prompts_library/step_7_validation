@@ -1,0 +1,11 @@
+Acceptance Criteria: 
+- A new user can register and is immediately logged in
+- A returning user can log in with valid credentials
+- Invalid credentials show an error without revealing which field is wrong
+- Refreshing the page preserves the session
+- Navigating to a protected route while logged out redirects to /login
+- Logging out clears session and blocks protected route access
+- "Remember me" persists session after browser close (if checked)
+- Login link should be integrated in src/components/layout/Navbar.tsx if no user has been logged in
+- Log out link should be integrated in src/components/layout/Navbar.tsx if a user has been logged in
+- src/components/layout/Navbar.tsx should not be visible in /login or /register routes

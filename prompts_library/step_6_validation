@@ -1,0 +1,19 @@
+Acceptance Criteria:
+    - Given the dashboard loads, then a project overview panel is visible displaying real-time metrics (task count, completion %, active members).
+    - given any metric changes, then progress indicators and trend arrows update without a full page reload.
+    - given a project has a defined status, then a colour-coded status badge (e.g. "On track", "At risk", "Blocked") is rendered alongside the project name.
+    - given the team section renders, then each member displays an avatar (image or initials fallback), their name, and their role badge.
+    - given a member's online status is known, then a green/grey status indicator dot is overlaid on their avatar.
+    - given a user clicks "Quick contact", then an action menu (message, email, or call) appears for that member.
+    - given the dashboard loads, then a chart visualises task completion (completed vs. total) using a bar or donut chart.
+    - given project milestones exist, then each milestone appears as a labelled marker on a timeline view.
+    - given a task is marked complete (Quick action or external event), then the chart data updates immediately without page refresh.
+    - given any team action occurs, then an entry is prepended to the feed showing the user's avatar, action description, activity-type icon, and a relative timestamp.
+    - given the feed has more than 10 entries, then only the 10 most recent are shown with a "Load more" affordance.
+    - given a new member is added, then an activity entry is automatically created and appears at the top of the feed.
+    - given a user clicks "Create new task", then a task creation form/modal is presented and, on submit, the task count and progress chart update.
+    - given a user clicks "Add team member", then an invite form appears and, on completion, the team section and activity feed both reflect the addition.
+    - given a user clicks "Generate report", then a summary report is produced (download or modal) with current project stats.
+    - given a user clicks "Schedule meeting", then a meeting scheduling form is shown with relevant team members pre-populated.
+    - given the theme is toggled (light ↔ dark), then every component charts, avatars, badges, cards, feed — switches appearance with no partial updates visible.
+    - Verify Navbar.tsx is still visible in src/pages/TeamDashboard.tsx

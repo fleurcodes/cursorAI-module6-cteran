@@ -1,0 +1,5 @@
+Step 2: Building User Profile Component
+
+Create a comprehensive user profile component for a social media application. 
+Include user avatar, name, bio, stats (followers, following, posts), and action 
+buttons (follow, message, edit profile). Use TypeScript for props and Tailwind CSS for styling. Make it responsive and accessible.

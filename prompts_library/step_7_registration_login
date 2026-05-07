@@ -1,0 +1,43 @@
+Step 9: implement login and user registration
+
+Core prompt:
+Build a complete authentication system with user registration, login, logout, session persistence, and protected routing. Both flows should share a cohesive UI and live in a unified auth module.
+
+Key features:
+    User registration flow
+    login with valid credentials
+    logout functionality
+    session persistence with session storage
+    protected routes (dashboard, settings, analytics, kanban, feed)
+
+Requirements:
+  1. Registration Flow
+    - Form fields: name, email, password, confirm password
+    - Client-side validation (required fields, email format, password strength, password match)
+    - On success: store user in session storage → redirect to dashboard
+    - Show inline field-level error messages
+    - use what has already been created in src/components/registration folder and the page RegistrationPage.tsx
+  2. Login Flow
+    - Form fields: email, password
+    - Validate credentials against stored/mock user data
+    - On success: persist session → redirect to dashboard
+    - On failure: show a clear, non-specific error ("Invalid email or password")
+    - Include a "Remember me" option (extend session or use localStorage)
+  3. Logout
+    - Clear session storage / auth token
+    - Redirect to /products
+    - Invalidate any cached user state
+  4. Session persistence
+    - Use sessionStorage (or localStorage for "remember me") to persist auth state across page refreshes
+    - On app init, check for existing session → skip login if valid
+  5. Protected routes
+    - Routes requiring auth: /dashboard, /settings, /analytics, /kanban, /feed
+    - Unauthenticated users hitting these routes → redirect to /login with a ?redirect= param so they land back after login
+    - Authenticated users hitting /login or /register → redirect to /dashboard
+
+Technical requirements:
+- Use a PrivateRoute (or equivalent guard) wrapper component
+- Auth state managed via context / store (not prop-drilled)
+- No hardcoded credentials visible in production paths — mock auth should be isolated in an authService or mockUsers file
+- Password field must have show/hide toggle
+- All forms must be keyboard-accessible and submit on Enter

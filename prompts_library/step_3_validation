@@ -1,0 +1,13 @@
+Step 3 validation:
+
+Validate the results of executing the Step 3 at @prompts_library/Step_3_Creating_Demo_Page
+
+Validate the Demo Page created in Step 3 showcases the UserProfile component with sample data. 
+Validate few different user profiles were included to demonstrate the component working
+
+Validate:
+    - Command was executed successfully  /shell run dev 
+    - Multiple user profiles displayed
+    - Responsive behavior when resizing browser
+    - Interactive button states 
+    - Clean, professional styling

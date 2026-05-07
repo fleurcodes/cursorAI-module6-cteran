@@ -1,0 +1,39 @@
+Step 8: Implement Cart, Checkout and Order Confirmation
+
+Core prompt: Build a complete purchase flow, from adding items to a cart, through checkout, to a final order confirmation screen. All state should be managed client-side with no real payment processing required.
+
+Key features:
+1. Cart
+  - Add items to cart from any product listing or detail page
+  - Support quantity adjustment (increment / decrement / manual input) per line item
+  - Remove individual items; show empty state when cart is cleared
+  - Cart icon in navbar shows live item count badge
+  - Cart persists across page refreshes via localStorage
+  - Cart accessible as a slide-over drawer or dedicated /cart page (pick one and stay consistent)
+
+2. Checkout Flow
+
+  - Multi-step or single-page form with clearly separated sections:
+
+    - Contact — name, email, phone
+    - Shipping — address line 1 & 2, city, state/province, ZIP, country
+    - Payment — card number, expiry, CVV, cardholder name (mock only — no real processing)
+
+  - Client-side validation on every field before advancing
+  - Order summary panel visible throughout checkout (items, subtotal, tax, shipping cost, total)
+  - "Back" navigation between steps without losing filled data
+  - Disable submit button while processing (show loading state)
+
+3. Order Confirmation page (/order-confirmation)
+  - Shown immediately after successful mock checkout
+  - Display: unique order number (randomly generated), itemized list, shipping address, estimated delivery date, total charged
+  - Clear CTA to continue shopping (back to home or product feed)
+  - Prevent revisiting confirmation via back button after session ends (or show a graceful "order already placed" state)
+
+Technical requirements:
+  - Cart state managed via context / store — not prop-drilled
+  - cartService or equivalent utility handles all add / remove / update / clear operations
+  - Payment fields must never be stored in state beyond form submission
+  - Tax and shipping calculated as simple flat/percentage mock values (define constants, don't hardcode inline)
+  - All forms keyboard-accessible; submit on Enter where appropriate
+  - Loading and error states on the checkout submit action

@@ -1,0 +1,65 @@
+Step 6: Building a Team Collaboration Dashboard
+
+Core Prompt:
+Build a complete task management dashboard for a team collaboration tool. Include a project overview, team member avatars, task progress charts, recent activity feed, and quick action buttons. Integrate all components into a cohesive interface with proper state management and responsive design.
+
+Key Features:
+1. Project Overview
+    Real-time metrics display
+    Progress indicators
+    Status badges
+    Trend indicators
+
+2. Team Members Section
+    Team member avatars
+    Online status indicators
+    Role badges
+    Quick contact actions
+
+3. Progress Charts
+    Task completion visualization
+    Project milestones
+    Timeline view
+
+4. Activity Feed
+    Recent team activities
+    Timestamp display
+    Activity type icons
+    User attribution
+
+5. Quick actions
+    Create new task
+    Add team member
+    Generate report
+    Schedule meeting
+
+State management patterns:
+    Local state with useState for UI interactions
+    Context API for shared state (theme, user)
+    Props drilling for component communication
+    Event handlers for user interactions
+
+Integration points:
+    When task is completed: update stats + progress chart + activity feed
+    When team member is added: update team section + activity feed
+    Theme toggle: update all components
+
+Expected output
+src/
+├── components/
+│   ├── TeamDashboard/
+│   │   ├── ProjectOverview.tsx
+│   │   ├── TeamMembers.tsx
+│   │   ├── ProgressChart.tsx
+│   │   ├── ActivityFeed.tsx
+│   │   ├── QuickActions.tsx
+│   │   ├── ProjectCard.tsx
+│   │   └── TeamDashboard.tsx
+│   ├── shared/
+│   │   ├── Avatar.tsx
+│   │   ├── Badge.tsx
+│   │   └── Card.tsx
+│   └── types/
+│       ├── team.ts
+│       ├── project.ts
+│       └── activity.ts

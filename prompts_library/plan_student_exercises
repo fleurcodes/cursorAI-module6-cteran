@@ -1,0 +1,1146 @@
+Plan : Student Exercise 1 - Build a Product Card Component
+Objective: Create a reusable product card component for an e-commerce application.
+
+Step 1 : Create a ProductCard component
+Create a ProductCard component for an e-commerce application. Include product image, title, description, price, star rating, and an "Add to Cart" button. 
+Use TypeScript for props and Tailwind 3 CSS for styling. Make it responsive with smooth hover effects and animations. Include accessibility features.
+Execute the command /shell npm run dev
+Acceptance Criteria:
+ -  Component displays all product information
+ - Responsive design (mobile, tablet, desktop)
+ - Hover effects on card and button
+ - Proper TypeScript typing
+ - Accessibility attributes present
+
+Validate Step 1:
+Verify the following components were created:
+ - ProductCard.tsx - Main card component
+ - RatingStars.tsx - Star rating display
+ - TypeScript interfaces for props
+ - Demo page with multiple products
+Confirm the acceptance criteria has been met
+
+
+Step 2 : Create a Navigation Bar Component
+Objective: Build a responsive navigation bar with dropdown menus.
+
+Core Prompt:
+Create a responsive navigation bar component with logo, menu items, search bar, and user profile dropdown. Include mobile hamburger menu. Use TypeScript and Tailwind 3 CSS. Make it sticky on scroll with smooth animations.
+Add real search functionality to the navigation bar:
+"Create a React search bar component with a placeholder 'Search…'. It should manage input state, trigger a debounced search handler, and navigate the user to the Products page (/#/products) while applying the typed query as a live product filter. The search must filter products by both title and description (case-insensitive). Use a shared state lifted to App.tsx so the nav search query is passed down to ProductDemo as a prop and synced via useEffect. The nav search and the in-page product-search (id='product-search', data-testid='search-input') must produce identical filtering results."
+
+Implement smooth scroll behavior :
+    Implement smooth scroll behavior using TypeScript in a project that uses Tailwind CSS v4 and no explicit use of frontend frameworks.
+
+    Context:
+    - Use React with TypeScript. Avoid external libraries; rely on native browser APIs where needed.
+    - Tailwind is used for styling, but avoid unnecessary custom CSS
+    - Code should be modular and reusable
+
+    Behavior:
+    - Triggered by clicking elements with a `data-scroll` attribute
+    - Scroll to target element using its ID (e.g., data-scroll="section1")
+    - Apply a configurable offset (default: 80px) for sticky headers
+    - Support scrolling the main window
+
+    Animation:
+    - Duration: 500ms
+    - Easing: ease-in-out cubic
+    - Use requestAnimationFrame (no setTimeout)
+
+    Constraints:
+    - Cancel animation if the user scrolls manually
+    - Respect `prefers-reduced-motion`
+    - Avoid layout thrashing (compute values upfront)
+    - Ensure accurate final position (no drift)
+
+    TypeScript Requirements:
+    - Strong typing (no `any`)
+    - Export as a reusable function or class
+    - Provide clear function signatures
+
+    Output:
+    - Provide the TypeScript implementation
+    - Show how to initialize it
+    - Include minimal HTML example using Tailwind classes
+    - Brief explanation of key decisions
+
+Add active link highlighting:
+    Implement active link highlighting for an existing navigation system built with TypeScript and Tailwind CSS v4, using the existing components:
+        Navbar.tsx
+        MobileMenu.tsx
+        UserDropdown.tsx
+    Requirements
+    1. Active Route Detection
+        Use the current browser location (window.location.pathname) to determine the active route.
+        Do NOT introduce external routing libraries (e.g., React Router, Next.js router).
+        Normalize paths to avoid mismatches (e.g., trailing slashes).
+    2. Reusable Utility
+        Create a utility function:
+            const isActive = (href: string): boolean
+        It should return true if the link matches the current path (support exact match and optional prefix matching for nested routes).
+    3. Tailwind Styling
+        Apply conditional Tailwind classes:
+            Active link:
+                text-primary
+                font-semibold
+                border-b-2 border-primary
+            Inactive link:
+            text-gray-500
+            hover:text-primary
+        Ensure styles are consistent across desktop (Navbar) and mobile (MobileMenu).
+    4. Component Integration
+        Update all navigation links in:
+            Navbar.tsx
+            MobileMenu.tsx
+        Ensure UserDropdown.tsx supports active state if it contains navigational links.
+    5. Accessibility
+        Add aria-current="page" to active links.
+    6. Type Safety
+        Ensure all props and utilities are fully typed in TypeScript.
+    7. No UI Regression
+        Preserve existing layout and responsiveness.
+        Do not refactor unrelated logic.
+    Expected Output
+        Updated components with active link highlighting.
+        A shared utility function for route matching.
+        Clean, minimal, and maintainable TypeScript code.
+
+
+Validate Step 2:
+Verify the following components were created:
+ - Navbar.tsx
+ - MobileMenu.tsx
+ - UserDropdown.tsx
+ - Navigation types interface
+
+
+Step 3 : Build a Settings Panel 
+Objective: Create a comprehensive settings panel with multiple tabs and form inputs.
+
+Core Prompt:
+Create a settings panel component composed of reusable, strongly-typed React components using TypeScript and Tailwind CSS v3+ with tabs for Profile, Notifications, Privacy, and Appearance. Include form inputs, toggle switches, dropdowns, and save buttons. 
+Use Tailwind CSS with dark mode support. Make it responsive and accessible.
+
+Architecture Requirements
+    Component Structure
+        Implement the following component hierarchy:
+            /components/settings/
+            ├── SettingsPanel.tsx        // Container + tab orchestration
+            ├── SettingsTabs.tsx         // Tab navigation
+            ├── SettingsSection.tsx      // Generic section wrapper
+            ├── ProfileSettings.tsx
+            ├── NotificationSettings.tsx
+            ├── PrivacySettings.tsx
+            ├── AppearanceSettings.tsx
+            ├── SettingsFormField.tsx    // Reusable input wrapper
+            ├── ToggleSwitch.tsx
+            ├── SelectDropdown.tsx
+            └── types.ts
+
+State & Data Handling
+    Use TypeScript-based state objects scoped within components
+    Avoid introducing external state management libraries
+    Maintain a structured settings object:
+        interface SettingsState {
+                profile: ProfileSettings;
+                notifications: NotificationSettings;
+                privacy: PrivacySettings;
+                appearance: AppearanceSettings;
+            }
+    Support:
+        Updating field values
+        Tracking modified values
+        Resetting to last saved state
+        Persisting data using localStorage
+
+TypeScript Requirements
+    Define strict interfaces:
+        interface ProfileSettings {
+        name: string;
+        email: string;
+        avatarUrl?: string;
+        }
+
+        interface NotificationSettings {
+        emailNotifications: boolean;
+        pushNotifications: boolean;
+        weeklySummary: boolean;
+        }
+
+        interface PrivacySettings {
+        profileVisibility: 'public' | 'private';
+        dataSharing: boolean;
+        }
+
+        interface AppearanceSettings {
+        theme: 'light' | 'dark' | 'system';
+        density: 'comfortable' | 'compact';
+        }
+
+    Constraints:
+        No use of any
+        Strong typing for all component props and event handlers
+
+UI/UX Requirements
+    Tabs Behavior
+        Desktop: horizontal tab navigation
+        Mobile: stacked or scrollable tabs
+        Active tab styling:
+            border-b-2 border-primary text-primary
+
+    Form Elements
+        Use reusable components for:
+            Text input
+            Email input
+            Dropdown select
+            Toggle switch
+        Behavior:
+            Inputs must reflect current state values
+            Inline validation (e.g., email format)
+            Error styling:
+                border-red-500
+                text-red-500
+    Dark Mode Integration
+        Use Tailwind’s dark: utilities
+        Sync appearance settings with theme selection
+        Persist theme preference in localStorage
+        Ensure consistent styling with the dashboard (Step 3)
+
+    Accessibility Requirements
+        Use semantic HTML elements (form, label, etc.)
+        Associate labels with inputs
+        Add ARIA roles:
+            role="tablist", role="tab", role="tabpanel"
+        Indicate active tab using aria-selected
+        Toggle switches must include aria-checked
+        Ensure keyboard navigation across tabs and inputs
+    
+    Styling (Tailwind CSS)
+        Maintain consistency with previous components:
+            rounded-2xl, shadow-md, hover:shadow-lg
+        Responsive layout using flex/grid
+        Smooth transitions:
+            transition-all duration-300
+    
+Behavioral Requirements
+    Save Action
+        “Save Changes” button:
+            Enabled only when changes are detected
+            Displays a loading state during save
+        Simulate async behavior:
+            await new Promise(resolve => setTimeout(resolve, 800));
+
+Reset Action
+    “Reset” button restores last saved values
+
+Persistence
+    Store settings in localStorage
+    Load persisted settings on initialization
+
+Integration Requirements
+    Must integrate with:
+        src/components/layout/Navbar.tsx
+        src/pages/Dashboard.tsx
+    Can be rendered as a dedicated view or section
+
+Acceptance Criteria
+    Tab navigation works correctly
+    All settings sections implemented
+    Type-safe interfaces applied
+    Reusable form components in place
+    Dark mode fully functional
+    Responsive across devices
+    Accessibility requirements satisfied
+    Settings persist correctly
+    No regressions in existing UI
+
+Validation Checklist
+    Ensure the following files exist and function:
+        SettingsPanel.tsx
+        SettingsTabs.tsx
+        ProfileSettings.tsx
+        NotificationSettings.tsx
+        PrivacySettings.tsx
+        AppearanceSettings.tsx
+        ToggleSwitch.tsx
+        SelectDropdown.tsx
+        src/types/settings.ts
+
+
+Step 4: Create a Data Visualization Dashboard
+
+Objective: Build a dashboard with charts and data visualization components.
+
+Core Prompt:
+Create a data analytics dashboard with chart placeholders, KPI cards, and data tables. Include filter controls and date range selectors. Use Tailwind CSS for styling with a modern, professional design. Support dark mode.
+
+1. Mock Chart Components (No External Libraries)
+    Implement reusable chart placeholders:
+        Line, Bar, Pie (visual-only, no real charting lib)
+    Built using Tailwind + div-based layouts
+    Include:
+        Titles
+        Legends (mock)
+        Fixed aspect ratios
+    Designed for future swap with real chart libraries
+2. Filter System (State-Driven)
+    Centralized filter state in AnalyticsDashboard
+    Strongly typed:
+        interface FiltersState {
+        startDate: string;
+        endDate: string;
+        category: string;
+        status: 'active' | 'inactive' | 'all';
+        }
+    Components:
+        DateRangePicker (mock)
+        SelectFilter (reusable dropdown)
+    Behavior:
+        On change → triggers simulated data reload
+        Includes Reset Filters
+        Fully controlled inputs
+3. Responsive Grid Layouts
+    Tailwind grid-based layout across sections:
+        grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6
+    Applies to:
+        KPI cards
+        Charts
+        Table container
+    Breakpoints:
+        Mobile: stacked
+        Tablet: 2 columns
+        Desktop: 3–4 columns
+4. Loading States (Critical UX Layer)
+    Simulate async fetch:
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    Implement skeleton loaders for:
+        KPI cards
+        Charts
+        Table rows
+    UX details:
+        animate-pulse
+        bg-gray-200 dark:bg-gray-700
+        Prevent layout shift
+        Smooth transitions (transition-opacity)
+5. KPI Cards
+    Metrics like:
+        Sales, Users, Conversion, Revenue
+    Include:
+        Trend indicators (↑ ↓)
+        Percentage change
+    Reusable + typed
+6. Data Table
+    Responsive (horizontal scroll on small screens)
+    Features:
+        Typed rows
+        Loading + empty states
+        Optional sorting
+Architecture (Enforced Modularity)
+    /components/analytics/
+    ├── AnalyticsDashboard.tsx
+    ├── KPIGrid.tsx
+    ├── KPICard.tsx
+    ├── ChartCard.tsx
+    ├── ChartPlaceholder.tsx
+    ├── FiltersBar.tsx
+    ├── DateRangePicker.tsx
+    ├── SelectFilter.tsx
+    ├── DataTable.tsx
+    ├── LoadingSkeleton.tsx
+    └── types.ts
+Cross-Cutting Requirements
+    Type Safety
+        No any
+        Strict interfaces for:
+            KPI
+            Filters
+            Table rows
+            Chart data
+    Styling Consistency
+        Reuse design tokens:
+            rounded-2xl, shadow-md, hover:shadow-lg
+            transition-all duration-300
+        Align with previous steps (Dashboard + Settings)
+Dark Mode
+    Tailwind dark: utilities
+    Sync with Step 4 theme persistence
+Accessibility
+    Semantic structure (section, table)
+    ARIA labels (charts, filters)
+    Keyboard navigation for filters
+Behavior Flow
+    Initial render → show skeletons
+    Data loads → render dashboard
+    Filter change → reload + skeletons
+    Render updated data
+
+Step 5: Write Tests for Product Search
+Objective: Design and implement comprehensive end-to-end (E2E) tests using Playwright for the product search, filtering, pagination, and sorting features.
+
+Core Prompt:
+Create a suite of Playwright E2E tests for the product search experience. The tests must validate user interactions with the search bar, filter controls, pagination, and sort options — covering both happy paths and edge cases.
+
+Test Cases to Implement:
+- Search with valid query
+- Search with no results
+- Apply single filter
+- Apply multiple filters
+- Clear all filters
+- Pagination navigation
+- Sort by different criteria
+
+Test Coverage Requirements
+1. Search Behavior
+    Validate the search bar with both positive and negative scenarios:
+        Valid Query
+            Enter a keyword that returns results
+            Verify matching products are displayed
+        No Results
+            Enter a query with no matches
+            Verify empty state message is shown
+        Edge Cases
+            Empty string, special characters, whitespace-only input
+
+2. Filter Controls
+    Single Filter
+        Apply one filter (e.g., category or price range)
+        Verify only matching products are shown
+    Multiple Filters
+        Apply two or more filters simultaneously
+        Verify results satisfy all active filters
+    Clear All Filters
+        Reset all active filters
+        Verify full product list is restored
+
+3. Pagination Navigation
+    Navigate to the next and previous pages
+    Verify correct products are displayed per page
+    Verify page state persists on forward/back navigation
+    Test boundary pages (first and last)
+
+4. Sort by Different Criteria
+    Sort by price (ascending and descending)
+    Sort by name (A–Z and Z–A)
+    Sort by relevance or rating (if applicable)
+    Verify product order changes correctly after each sort selection
+
+Technical Requirements
+    Use TypeScript (strict mode, no any)
+    Use Playwright Test Runner
+    Follow Page Object Model (POM) for maintainability
+    Mock network requests where needed (e.g., search and filter API)
+    Use data-testid or accessible selectors (avoid brittle selectors)
+
+Expected Output
+    Playwright test files:
+        /tests/
+        ├── search.spec.ts
+        ├── filters.spec.ts
+        ├── pagination.spec.ts
+        └── sort.spec.ts
+    Page Object:
+        /pages/
+        └── SearchPage.ts
+    Reusable helpers:
+        Query builders
+        Filter state utilities
+
+Acceptance Criteria
+    - All tests pass in headless mode
+    - Tests work across different viewports
+    - Proper assertions for each scenario
+    - Error handling tested
+
+
+Step 6: Test Form Validation
+Objective: Create comprehensive tests for a multi-step form.
+
+Core Prompt:
+Create Playwright tests for a multi-step registration form. Test field validation, navigation between steps, form submission, error messages, and success state. Include accessibility checks for form labels and error announcements.
+
+Test Coverage:
+    - Field validation (required, format, length)
+    - Step navigation (next, previous)
+    - Form submission (success and error)
+    - Accessibility (labels, ARIA attributes)
+
+Test Coverage Requirements
+1. Field Validation (Required, Format, Length)
+    Validate all form inputs with both positive and negative scenarios:
+        Required Fields
+            Ensure mandatory fields block progression when empty
+            Verify inline error messages are displayed
+        Format Validation
+            Email: valid/invalid formats (e.g., user@domain.com vs user@)
+            Password: enforce rules (e.g., uppercase, number, special char)
+        Length Constraints
+            Minimum and maximum character limits
+            Boundary value testing (exact min/max)
+        Error Handling
+            Errors should:
+                Be visible
+                Be associated with the correct input
+                Clear when input becomes valid
+
+2. Step Navigation (Next / Previous)
+    Ensure correct behavior across multi-step flow:
+        Forward Navigation
+            "Next" button only enabled when current step is valid
+            Data persists when moving forward
+        Backward Navigation
+            "Previous" button restores previously entered values
+        Direct Navigation Constraints
+            Prevent skipping required steps (if applicable)
+        State Integrity
+            Validate form state consistency across steps
+
+3. Form Submission (Success and Error Scenarios)
+    Successful Submission
+        Submit valid form data
+        Verify:
+            Success message or confirmation screen
+            Optional redirect behavior
+    Submission Errors
+        Simulate API failure (mock network response)
+        Validate:
+            Error message display
+            Retry capability
+            No data loss after failure
+    Loading State
+        Assert loading indicators during async submission
+        Prevent duplicate submissions
+
+4. Accessibility (A11y Compliance)
+    Validate the form adheres to accessibility standards:
+        Labels & Inputs
+            All inputs must have associated <label> elements
+            Use for / id linkage or aria-label
+    ARIA Attributes
+        Error messages use:
+            aria-live="assertive" or polite
+            aria-describedby for inputs with errors
+        Step indicators use appropriate roles (e.g., role="progressbar" or aria-current)
+    Keyboard Navigation
+        Full form operable via keyboard:
+            Tab order is logical
+            Enter/Space triggers actions correctly
+    Screen Reader Support
+        Ensure error messages are announced
+    Focus Management
+        Focus moves to first invalid field on validation failure
+
+Technical Requirements
+    Use TypeScript (strict mode, no any)
+    Use Playwright Test Runner
+    Follow Page Object Model (POM) for maintainability
+    Mock network requests where needed (e.g., submission API)
+    Use data-testid or accessible selectors (avoid brittle selectors)
+
+Expected Output
+    Playwright test files:
+        /tests/
+        ├── registration.spec.ts
+        ├── navigation.spec.ts
+        ├── validation.spec.ts
+        ├── accessibility.spec.ts
+    Page Object:
+        /pages/
+        └── RegistrationPage.ts
+    Reusable helpers:
+        Form data generators
+        Validation utilities
+
+Acceptance Criteria
+    All validation rules are covered with edge cases
+    Step navigation behaves correctly in all directions
+    Submission handles both success and failure scenarios
+    Accessibility checks pass (labels, ARIA, keyboard navigation)
+    Tests are deterministic and do not rely on flaky selectors
+
+Step 7: Build a Project Management Board
+Objective: Create a fully functional Kanban-style project management board with typed state management, drag-and-drop support, task CRUD operations, filtering, and dark mode — integrated with the existing dashboard and settings system.
+
+---
+
+Core Prompt:
+
+Build a Kanban board application using React, TypeScript (strict mode, no `any`), and Tailwind CSS v3+. The board must support multiple columns, rich task cards, modal-based task creation and editing, real drag-and-drop interaction, filtering and search, and full dark mode support. Persist all board state to localStorage. Integrate with the navigation system (Step 2) and the dashboard layout (Step 3).
+
+---
+
+Architecture Requirements
+
+Component Structure
+    Implement the following component hierarchy:
+        /components/kanban/
+        ├── KanbanBoard.tsx           // Root container — owns board state
+        ├── BoardColumn.tsx           // Individual column (header + task list + drop zone)
+        ├── TaskCard.tsx              // Draggable task card with full metadata
+        ├── TaskModal.tsx             // Shared modal for creating and editing tasks
+        ├── BoardFilters.tsx          // Search bar + priority/assignee filter controls
+        ├── BoardHeader.tsx           // Board title, add-column button, filter toggle
+        ├── ColumnHeader.tsx          // Column title, task count badge, add-task shortcut
+        ├── PriorityBadge.tsx         // Reusable priority label (Low / Medium / High / Critical)
+        ├── AssigneeAvatar.tsx        // Avatar with tooltip showing assignee name
+        ├── DueDateLabel.tsx          // Due date display with overdue styling
+        └── types.ts                  // All shared TypeScript interfaces and enums
+
+State & Data Model
+    All state must be typed — no use of `any`.
+    Define the following interfaces in types.ts:
+
+        type Priority = 'low' | 'medium' | 'high' | 'critical';
+        type ColumnId = string;
+
+        interface Assignee {
+            id: string;
+            name: string;
+            avatarUrl?: string;
+        }
+
+        interface Task {
+            id: string;
+            title: string;
+            description?: string;
+            priority: Priority;
+            assignees: Assignee[];
+            dueDate?: string;          // ISO 8601 date string
+            columnId: ColumnId;
+            createdAt: string;
+            order: number;             // position within its column
+            tags?: string[];
+        }
+
+        interface Column {
+            id: ColumnId;
+            title: string;
+            color?: string;            // accent color for the column header
+            taskLimit?: number;        // optional WIP limit
+        }
+
+        interface BoardState {
+            columns: Column[];
+            tasks: Task[];
+        }
+
+    Default columns on first load: "To Do", "In Progress", "In Review", "Done".
+    Persist BoardState to localStorage on every change.
+    Load persisted state on initialization; fall back to defaults if absent.
+
+---
+
+Feature Requirements
+
+1. Kanban Columns
+    Display all columns side-by-side in a horizontally scrollable container.
+    Each column header shows:
+        - Column title (editable inline on double-click)
+        - Task count badge (e.g., "3 tasks")
+        - WIP limit warning when taskLimit is exceeded (highlight column header in amber)
+        - An "Add task" icon button
+    Columns must accept dropped tasks and reorder them accordingly.
+    Provide a "Add Column" button in the board header that opens an inline input.
+    Allow column deletion (only if empty; show a tooltip warning if not).
+
+2. Task Cards
+    Each TaskCard must display:
+        - Title (truncated at 2 lines with ellipsis)
+        - Priority badge with color coding:
+            low → green, medium → yellow, high → orange, critical → red
+        - Assignee avatar(s) (stack up to 3; show "+N" overflow badge)
+        - Due date label — show in red with a warning icon if overdue
+        - Tag chips (if any)
+        - A drag handle icon (visible on hover)
+    Clicking a card opens TaskModal in edit mode.
+    Cards must have a visible hover state and smooth lift effect (shadow + slight scale).
+
+3. Task Modal (Create & Edit)
+    A single TaskModal component handles both create and edit flows, controlled by a `mode: 'create' | 'edit'` prop.
+    Fields:
+        - Title (required, max 120 characters)
+        - Description (optional, textarea, max 500 characters)
+        - Priority (dropdown: Low / Medium / High / Critical)
+        - Assignees (multi-select from a static list of team members)
+        - Due Date (date picker input)
+        - Tags (comma-separated free-text input)
+        - Target Column (dropdown — pre-filled based on where "Add task" was triggered)
+    Behaviors:
+        - "Save" button disabled until title is non-empty
+        - Show a character counter beneath Title and Description
+        - On save, generate a unique task ID using crypto.randomUUID()
+        - On edit, update the existing task in-place
+        - Confirm before discarding unsaved changes (show inline warning)
+        - Trap focus within the modal; close on Escape or backdrop click
+    Accessibility:
+        - role="dialog", aria-modal="true", aria-labelledby pointing to the modal title
+        - All form fields have associated <label> elements
+        - Error messages use aria-describedby
+
+4. Drag-and-Drop (Native HTML5 — No External Library Required)
+    Use the native HTML5 Drag and Drop API (draggable, onDragStart, onDragOver, onDrop).
+    Behavior:
+        - Dragging a card highlights the destination column drop zone (dashed border + background tint)
+        - Dropping a card into a new column updates its columnId and reorders by drop position
+        - Reordering within the same column is supported
+        - If the destination column has a taskLimit and is at capacity, reject the drop and show a toast notification: "Column is at WIP limit"
+        - Preserve order values after every drop
+    Visual feedback:
+        - The dragged card renders at reduced opacity (opacity-50)
+        - A drop indicator line appears between cards at the insertion point
+
+5. Filter & Search
+    BoardFilters renders a search bar and filter dropdowns, controlled by centralized filter state in KanbanBoard.
+    Filters:
+        - Text search: matches task title or description (case-insensitive)
+        - Priority: multi-select (All / Low / Medium / High / Critical)
+        - Assignee: single-select dropdown from available assignees
+        - Due date: "Overdue only" toggle
+    Behavior:
+        - Filters apply in real time (no "Apply" button needed)
+        - Filtered-out cards are hidden; empty columns show a "No matching tasks" placeholder
+        - A "Clear Filters" button resets all filters
+        - The active filter count is shown as a badge on the filter toggle button
+
+---
+
+UI/UX Requirements
+
+Styling Consistency
+    Maintain design token alignment with previous steps:
+        rounded-2xl, shadow-md, hover:shadow-lg, transition-all duration-300
+    Column width: fixed at 280px min-width with horizontal scroll on the board container
+    Board background: a subtle grid or dot pattern using Tailwind's bg-dot or a custom utility class
+
+Dark Mode
+    Use Tailwind's dark: utilities throughout
+    Sync with the theme persistence established in Step 4 (AppearanceSettings)
+    Ensure all priority colors, column accents, and avatar backgrounds remain accessible in dark mode
+
+Responsive Behavior
+    Mobile (< 640px): show one column at a time with left/right swipe (CSS scroll-snap)
+    Tablet (640px–1024px): show two columns; horizontally scrollable
+    Desktop (> 1024px): all columns visible side-by-side with horizontal scroll
+
+Animations & Transitions
+    Modal enter/exit: fade + scale (transition-opacity, transition-transform, duration-200)
+    Card drag: opacity drop on drag start, smooth position snap on drop
+    Column highlight: transition-colors duration-150 on drag-over
+    WIP limit warning: pulse animation on the column header badge
+
+---
+
+Advanced Challenges
+
+These must be implemented as full features, not placeholders:
+
+A. Column Management
+    Allow adding new columns via the BoardHeader "Add Column" button:
+        - Inline input appears; confirm with Enter, cancel with Escape
+        - Assign a unique ID and a random accent color from a preset palette
+    Allow renaming columns via inline double-click edit on ColumnHeader
+    Allow deleting empty columns (with a confirmation tooltip)
+    Allow reordering columns by dragging the ColumnHeader (drag handle visible on hover)
+
+B. Task Assignment Feature
+    Maintain a static roster of team members in a `teamMembers.ts` constants file:
+        interface TeamMember { id: string; name: string; avatarUrl?: string; }
+    In TaskModal, provide a multi-select assignee picker:
+        - Displays avatar + name for each member
+        - Supports keyboard navigation and selection
+        - Selected assignees appear as stacked avatars in the TaskCard
+    In BoardFilters, the Assignee filter dropdown is populated from this roster
+
+C. localStorage Persistence
+    Serialize and persist the full BoardState (columns + tasks) to localStorage under the key `kanban_board_state`
+    On mount, deserialize and validate the stored state:
+        - If invalid or corrupted, fall back to defaults and log a console warning
+        - Use a version key (`kanban_board_version: '1'`) to handle future migrations
+    Provide a "Reset Board" button in BoardHeader (with confirmation) that clears storage and restores defaults
+
+D. WIP Limits
+    Each column optionally accepts a taskLimit: number
+    Display the current count vs. limit in the column header: e.g., "In Progress (3/5)"
+    When the count equals the limit:
+        - Color the badge amber
+        - Disable the "Add Task" button for that column
+        - Reject drag-and-drop drops with a toast notification
+
+E. Toast Notification System
+    Implement a lightweight toast system (no external library):
+        /components/ui/
+        └── ToastProvider.tsx     // Context + portal-rendered toast container
+    Toast types: success, error, warning, info
+    Auto-dismiss after 3 seconds with a progress bar
+    Show toasts for:
+        - Task created / updated / deleted
+        - WIP limit exceeded (drag rejected)
+        - Board reset confirmed
+        - State load failure (fallback to defaults)
+
+---
+
+Acceptance Criteria
+
+Core Features:
+    [ ] All four default columns render correctly with titles, task counts, and add-task controls
+    [ ] TaskCard displays title, priority badge, assignee avatars, due date, and tags
+    [ ] Overdue due dates render in red with a warning icon
+    [ ] TaskModal opens in create mode from column header and edit mode from card click
+    [ ] TaskModal validates required fields; Save is disabled when title is empty
+    [ ] Modal traps focus and closes on Escape or backdrop click
+    [ ] Drag-and-drop moves cards between columns and updates state correctly
+    [ ] Reordering within the same column works and persists
+    [ ] WIP limit rejects over-limit drops and shows a toast
+    [ ] Search and all filter types work in real time and can be reset
+    [ ] Board state persists to localStorage and loads correctly on page refresh
+    [ ] Dark mode works consistently across all components
+    [ ] Responsive layout is correct on mobile, tablet, and desktop
+    [ ] No TypeScript errors (strict mode, no `any`)
+    [ ] No regressions in existing UI (navigation, dashboard, settings)
+
+Advanced Challenges:
+    [ ] New columns can be added, renamed, reordered, and deleted
+    [ ] Assignee picker in TaskModal supports multi-select with avatar display
+    [ ] Assignee filter in BoardFilters works correctly
+    [ ] localStorage version key is present and fallback behavior is implemented
+    [ ] "Reset Board" clears storage, restores defaults, and shows a toast
+    [ ] WIP limit badge and color warning display correctly
+    [ ] Toast notifications appear and auto-dismiss for all relevant events
+
+Accessibility:
+    [ ] All interactive elements are keyboard accessible (Tab, Enter, Space, Escape)
+    [ ] Modal has role="dialog", aria-modal="true", and aria-labelledby
+    [ ] All form fields have associated <label> or aria-label
+    [ ] Error messages are linked via aria-describedby
+    [ ] Drag-and-drop has an accessible fallback (e.g., a "Move to…" select in the card menu)
+    [ ] Drag state is communicated via aria-grabbed and aria-dropeffect where appropriate
+
+---
+
+Validation Checklist
+
+Verify the following files exist and are fully implemented (not placeholder stubs):
+    /components/kanban/
+        [ ] KanbanBoard.tsx
+        [ ] BoardColumn.tsx
+        [ ] TaskCard.tsx
+        [ ] TaskModal.tsx
+        [ ] BoardFilters.tsx
+        [ ] BoardHeader.tsx
+        [ ] ColumnHeader.tsx
+        [ ] PriorityBadge.tsx
+        [ ] AssigneeAvatar.tsx
+        [ ] DueDateLabel.tsx
+        [ ] types.ts
+    /components/ui/
+        [ ] ToastProvider.tsx
+    /constants/
+        [ ] teamMembers.ts
+
+Functional Verification:
+    [ ] Open the app → board loads with default columns and sample tasks
+    [ ] Refresh the page → board state is restored from localStorage exactly
+    [ ] Add a task → appears in the correct column; toast confirms creation
+    [ ] Edit a task → all fields update correctly; toast confirms update
+    [ ] Drag a task to another column → state updates; order is preserved
+    [ ] Drag to a full column (WIP limit reached) → drop is rejected; toast appears
+    [ ] Apply a text search → only matching cards are visible; column placeholders show for empty columns
+    [ ] Toggle "Overdue only" filter → only overdue tasks are visible
+    [ ] Reset board → localStorage is cleared; defaults are restored; toast confirms
+    [ ] Switch to dark mode (from Step 4 settings) → entire board re-themes correctly
+    [ ] On mobile → single-column scroll-snap layout is active
+    [ ] Run TypeScript compiler (tsc --noEmit) → zero errors
+
+Step 8: Create a Social Media Feed
+Objective: Build a fully interactive social media feed with post creation, rich post cards, threaded comments, engagement interactions, and an infinite scroll mechanism — integrated with the existing navigation system, dashboard layout, and dark mode settings.
+
+---
+
+Core Prompt:
+
+Build a social media feed application using React, TypeScript (strict mode, no `any`), and Tailwind CSS v3+. The feed must support creating posts with text and optional images, rendering a scrollable list of post cards with full engagement controls (like, comment, share), collapsible threaded comment sections, and an infinite scroll placeholder that simulates loading additional posts. Persist feed state to localStorage. Integrate with the navigation system (Step 2) and the dashboard layout (Step 3).
+
+---
+
+Architecture Requirements
+
+Component Structure
+    Implement the following component hierarchy:
+        /components/feed/
+        ├── Feed.tsx                  // Root container — owns feed state and scroll logic
+        ├── PostCard.tsx              // Individual post card with full engagement controls
+        ├── PostHeader.tsx            // Avatar, username, timestamp, and post options menu
+        ├── PostMedia.tsx             // Optional image/video media display with aspect-ratio container
+        ├── PostActions.tsx           // Like, Comment, Share action buttons with counts
+        ├── CommentSection.tsx        // Collapsible threaded comment list for a given post
+        ├── CommentItem.tsx           // Single comment row with avatar, author, text, and like action
+        ├── CommentInput.tsx          // Inline reply/comment input with submit button
+        ├── CreatePost.tsx            // Post creation form (text + optional image upload preview)
+        ├── UserAvatar.tsx            // Reusable circular avatar with fallback initials
+        ├── InfiniteScrollTrigger.tsx // Intersection Observer sentinel that fires a load callback
+        └── types.ts                  // All shared TypeScript interfaces and enums
+
+State & Data Model
+    All state must be typed — no use of `any`.
+    Define the following interfaces in types.ts:
+
+        interface Author {
+            id: string;
+            name: string;
+            username: string;       // e.g. "@jane_doe"
+            avatarUrl?: string;
+        }
+
+        interface Comment {
+            id: string;
+            postId: string;
+            author: Author;
+            content: string;
+            createdAt: string;      // ISO 8601
+            likeCount: number;
+            likedByCurrentUser: boolean;
+        }
+
+        interface Post {
+            id: string;
+            author: Author;
+            content: string;
+            mediaUrl?: string;      // optional image URL
+            createdAt: string;      // ISO 8601
+            likeCount: number;
+            likedByCurrentUser: boolean;
+            commentCount: number;
+            shareCount: number;
+            comments: Comment[];
+            isCommentsOpen: boolean;
+        }
+
+        interface FeedState {
+            posts: Post[];
+            page: number;
+            hasMore: boolean;
+            isLoading: boolean;
+        }
+
+        interface NewPostDraft {
+            content: string;
+            mediaPreviewUrl?: string;
+        }
+
+    Seed the feed with at least 6 realistic mock posts on first load.
+    Persist FeedState to localStorage under the key `social_feed_state` on every change.
+    Load persisted state on initialization; fall back to mock seed data if absent or invalid.
+
+---
+
+Feature Requirements
+
+1. Post Creation (CreatePost)
+    A sticky card at the top of the feed with:
+        - Current user avatar (left-aligned)
+        - Expandable textarea: placeholder "What's on your mind?" (max 280 characters)
+        - Character counter that turns red when ≥ 260 characters
+        - Image attachment button: opens a file picker limited to image/* types
+            - Display a thumbnail preview below the textarea; allow removal
+        - "Post" submit button:
+            - Disabled when content is empty and no image is attached
+            - Shows a spinner during the simulated async save (500 ms delay)
+        - On submit: prepend new post to the top of the feed, clear the form, show a success toast
+    Accessibility:
+        - textarea has an associated <label> (visually hidden is acceptable)
+        - submit button has aria-disabled when inactive
+        - image preview has a descriptive alt attribute
+
+2. Post Cards (PostCard)
+    Each PostCard must display:
+        - PostHeader: avatar, display name, @username, relative timestamp (e.g., "2 h ago"), and a ⋯ options menu (Delete post for current user's own posts)
+        - Post text content with "See more / See less" toggle for content exceeding 3 lines
+        - PostMedia: full-width image with object-cover and a rounded-xl container (only when mediaUrl is present)
+        - A divider line above PostActions
+        - PostActions: three buttons — Like, Comment, Share — each showing an icon and a count label
+    Hover & interaction states:
+        - Card: subtle hover:shadow-lg and transition-shadow duration-300
+        - Action buttons: icon color changes on hover; Like button fills/unfills on toggle
+    Clicking the Comment button toggles CommentSection visibility (isCommentsOpen)
+    Clicking the Share button copies the post URL to clipboard and shows a brief "Link copied!" toast
+
+3. Comment Section (CommentSection + CommentItem + CommentInput)
+    Collapsible per post, controlled by isCommentsOpen on the Post object.
+    Rendering:
+        - Show up to 3 comments initially; a "View all N comments" link loads the rest
+        - Each CommentItem shows: avatar, bold author name, comment text, relative timestamp, and a like icon with count
+        - Liking a comment toggles likedByCurrentUser and increments/decrements likeCount in state
+    CommentInput:
+        - Sits at the bottom of the open section
+        - Single-line input with placeholder "Write a comment…" and a Send icon button
+        - Submitting appends the new comment to the post's comments array and increments commentCount
+        - Input clears after submit; focus is restored to the input field
+    Empty state: when a post has no comments, show "Be the first to comment."
+
+4. Like / Unlike Posts (PostActions)
+    Clicking the Like button:
+        - Toggles likedByCurrentUser on the Post
+        - Increments or decrements likeCount accordingly
+        - Animates the heart icon with a brief scale-up (scale-125 → scale-100, duration-150)
+    State changes persist immediately to localStorage
+
+5. Infinite Scroll (InfiniteScrollTrigger)
+    Place an InfiniteScrollTrigger sentinel element below the last PostCard.
+    Use the Intersection Observer API to detect when the sentinel enters the viewport.
+    On intersection:
+        - Set isLoading: true and render 3 skeleton PostCard placeholders (animate-pulse)
+        - Simulate a 1 200 ms async fetch delay
+        - Append 4 new mock posts to the feed
+        - Increment page; set hasMore: false after page 5 to stop loading
+        - When hasMore is false, replace the sentinel with "You're all caught up 🎉"
+    Skeleton cards must match the layout of real PostCards to prevent layout shift.
+
+6. Post Options Menu (PostHeader)
+    A ⋯ icon button on every post opens a small dropdown positioned with Tailwind absolute utilities.
+    For the current user's own posts: show "Delete post"
+        - Clicking Delete shows an inline confirmation ("Are you sure?") before removing the post
+        - Deletion updates state and shows a toast: "Post deleted"
+    For other users' posts: show "Report post" (logs to console; no further action required)
+    The menu closes when clicking outside (use a useEffect with a document click listener)
+    Accessibility: button has aria-haspopup="menu", aria-expanded, and the menu has role="menu"
+
+---
+
+UI/UX Requirements
+
+Styling Consistency
+    Maintain design token alignment with previous steps:
+        rounded-2xl, shadow-md, hover:shadow-lg, transition-all duration-300
+    Feed max-width: max-w-2xl centered with mx-auto for a focused reading column
+    Card backgrounds: bg-white dark:bg-gray-800 with a subtle border border-gray-100 dark:border-gray-700
+
+Dark Mode
+    Use Tailwind's dark: utilities throughout all components
+    Sync with the theme persistence established in Step 4 (AppearanceSettings)
+    Ensure avatar fallback colors, action button icons, and media overlays remain accessible in dark mode
+
+Responsive Behavior
+    Mobile (< 640px): full-width cards, touch-friendly tap targets (min 44px), stacked layout
+    Tablet (640px–1024px): centered column at max-w-xl
+    Desktop (> 1024px): centered column at max-w-2xl; CreatePost card is sticky at top
+
+Animations & Transitions
+    Like button: scale bounce (scale-125 → scale-100, duration-150) on toggle
+    CommentSection expand/collapse: max-height transition (transition-[max-height] duration-300 ease-in-out)
+    New post prepend: slide-down + fade-in animation (translateY(-8px) → translateY(0), opacity-0 → opacity-100, duration-200)
+    Skeleton loaders: animate-pulse with bg-gray-200 dark:bg-gray-700 blocks
+
+---
+
+Advanced Challenges
+
+These must be implemented as full features, not placeholder stubs:
+
+A. Emoji Reactions
+    Replace the single Like button with a reaction picker (👍 ❤️ 😂 😮 😢 😡)
+    On hover/long-press the Like button, a small popover shows the 6 reaction options
+    A post stores reactionType: ReactionType | null per current user
+    The action bar displays the top 2 most-used reaction emojis and a total count
+
+B. Share to Clipboard
+    Clicking Share copies a simulated post URL (e.g., https://app.local/posts/${post.id}) to the clipboard using navigator.clipboard.writeText()
+    Increment shareCount on the Post after a successful copy
+    Show a "Link copied!" toast that auto-dismisses after 2 seconds
+
+C. localStorage Persistence
+    Serialize and persist the full FeedState to localStorage under the key `social_feed_state`
+    On mount, deserialize and validate stored state:
+        - If invalid or corrupted, fall back to seed data and log a console warning
+        - Use a version key (`social_feed_version: '1'`) to handle future migrations
+
+D. Toast Notification System
+    Re-use or extend the ToastProvider from Step 7 (or create a compatible one if Step 7 was skipped):
+        /components/ui/
+        └── ToastProvider.tsx
+    Show toasts for:
+        - Post created successfully
+        - Post deleted
+        - Link copied to clipboard
+        - State load failure (fallback to seed data)
+
+---
+
+Acceptance Criteria
+
+Components:
+    [ ] Feed renders CreatePost at the top and a scrollable list of PostCards below
+    [ ] CreatePost allows text entry (max 280 chars) with a visible character counter
+    [ ] CreatePost allows image attachment with a thumbnail preview and removal option
+    [ ] "Post" button is disabled when form is empty; shows spinner during save simulation
+    [ ] New post is prepended to the feed with a slide-in animation and a success toast
+    [ ] PostCard displays author info, content, optional media, and action buttons with counts
+    [ ] "See more / See less" toggle works for long post content
+    [ ] Like button toggles correctly and updates likeCount in real time with a scale animation
+    [ ] Comment button toggles CommentSection visibility per post
+    [ ] CommentSection shows up to 3 comments initially; "View all" loads the rest
+    [ ] New comments can be submitted and appear immediately; commentCount is updated
+    [ ] Comment likes toggle correctly and update likeCount per comment
+    [ ] InfiniteScrollTrigger fires when scrolled to the bottom and appends new posts
+    [ ] Skeleton loaders are shown during the simulated fetch delay
+    [ ] "You're all caught up" message appears when hasMore is false
+    [ ] Post options menu opens and closes correctly; Delete removes the post with confirmation
+    [ ] Share button copies a URL to clipboard and increments shareCount with a toast
+    [ ] Feed state persists to localStorage and restores correctly on page refresh
+    [ ] Dark mode works consistently across all components
+    [ ] Responsive layout is correct on mobile, tablet, and desktop
+    [ ] No TypeScript errors (strict mode, no `any`)
+    [ ] No regressions in existing UI (navigation, dashboard, settings, kanban)
+
+Advanced Challenges:
+    [ ] Emoji reaction picker opens on hover/long-press and stores selected reaction per post
+    [ ] Top 2 reaction emojis and total count are displayed on the action bar
+    [ ] Share increments shareCount and shows a "Link copied!" toast
+    [ ] localStorage version key is present and fallback behavior is implemented
+    [ ] Toast notifications appear and auto-dismiss for all relevant feed events
+
+Accessibility:
+    [ ] All interactive elements are keyboard accessible (Tab, Enter, Space, Escape)
+    [ ] Post options menu has aria-haspopup="menu", aria-expanded, and role="menu"
+    [ ] CreatePost textarea has an associated <label>
+    [ ] Submit button has aria-disabled when inactive
+    [ ] Media elements have descriptive alt attributes
+    [ ] CommentSection uses aria-live="polite" to announce new comments
+
+---
+
+Validation Checklist
+
+Verify the following files exist and are fully implemented (not placeholder stubs):
+    /components/feed/
+        [ ] Feed.tsx
+        [ ] PostCard.tsx
+        [ ] PostHeader.tsx
+        [ ] PostMedia.tsx
+        [ ] PostActions.tsx
+        [ ] CommentSection.tsx
+        [ ] CommentItem.tsx
+        [ ] CommentInput.tsx
+        [ ] CreatePost.tsx
+        [ ] UserAvatar.tsx
+        [ ] InfiniteScrollTrigger.tsx
+        [ ] types.ts
+    /components/ui/
+        [ ] ToastProvider.tsx (new or reused from Step 7)
+
+Functional Verification:
+    [ ] Open the app → feed loads with at least 6 seeded posts
+    [ ] Refresh the page → feed state is restored from localStorage exactly
+    [ ] Create a post with text only → appears at the top of the feed with a slide-in animation; toast confirms creation
+    [ ] Create a post with an image → thumbnail preview shown in CreatePost; image renders in the PostCard
+    [ ] Like a post → likeCount increments, heart icon fills, scale animation plays; unlike reverses all three
+    [ ] Open comments on a post → CommentSection expands with existing comments and CommentInput
+    [ ] Submit a new comment → appears immediately at the bottom of the list; commentCount updates
+    [ ] Like a comment → likeCount increments; unlike reverses it
+    [ ] Scroll to the bottom → skeleton loaders appear, new posts load after ~1.2 s, scroll continues
+    [ ] Reach page 5 → "You're all caught up" message is displayed; no further loads trigger
+    [ ] Delete own post → confirmation prompt shown; post removed from feed; toast confirms deletion
+    [ ] Share a post → URL copied to clipboard; shareCount increments; "Link copied!" toast appears
+    [ ] Switch to dark mode (from Step 4 settings) → entire feed re-themes correctly with no contrast issues
+    [ ] On mobile → cards are full-width; all tap targets are at least 44px; no horizontal overflow
+    [ ] Run TypeScript compiler (tsc --noEmit) → zero errors

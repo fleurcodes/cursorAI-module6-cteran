@@ -1,0 +1,70 @@
+Step 5: Write Tests for Product Search
+Objective: Design and implement comprehensive end-to-end (E2E) tests using Playwright for the product search, filtering, pagination, and sorting features.
+
+Core Prompt:
+Create a suite of Playwright E2E tests for the product search experience. The tests must validate user interactions with the search bar, filter controls, pagination, and sort options — covering both happy paths and edge cases.
+
+Test Cases to Implement:
+- Search with valid query
+- Search with no results
+- Apply single filter
+- Apply multiple filters
+- Clear all filters
+- Pagination navigation
+- Sort by different criteria
+
+Test Coverage Requirements
+1. Search Behavior
+    Validate the search bar with both positive and negative scenarios:
+        Valid Query
+            Enter a keyword that returns results
+            Verify matching products are displayed
+        No Results
+            Enter a query with no matches
+            Verify empty state message is shown
+        Edge Cases
+            Empty string, special characters, whitespace-only input
+
+2. Filter Controls
+    Single Filter
+        Apply one filter (e.g., category or price range)
+        Verify only matching products are shown
+    Multiple Filters
+        Apply two or more filters simultaneously
+        Verify results satisfy all active filters
+    Clear All Filters
+        Reset all active filters
+        Verify full product list is restored
+
+3. Pagination Navigation
+    Navigate to the next and previous pages
+    Verify correct products are displayed per page
+    Verify page state persists on forward/back navigation
+    Test boundary pages (first and last)
+
+4. Sort by Different Criteria
+    Sort by price (ascending and descending)
+    Sort by name (A–Z and Z–A)
+    Sort by relevance or rating (if applicable)
+    Verify product order changes correctly after each sort selection
+
+Technical Requirements
+    Use TypeScript (strict mode, no any)
+    Use Playwright Test Runner
+    Follow Page Object Model (POM) for maintainability
+    Mock network requests where needed (e.g., search and filter API)
+    Use data-testid or accessible selectors (avoid brittle selectors)
+
+Expected Output
+    Playwright test files:
+        /tests/
+        ├── search.spec.ts
+        ├── filters.spec.ts
+        ├── pagination.spec.ts
+        └── sort.spec.ts
+    Page Object:
+        /pages/
+        └── SearchPage.ts
+    Reusable helpers:
+        Query builders
+        Filter state utilities
