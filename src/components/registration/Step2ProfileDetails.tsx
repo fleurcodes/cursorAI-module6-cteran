@@ -19,12 +19,6 @@ export default function Step2ProfileDetails({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-  const validate = (): boolean => {
-    const result = validateStep2(data);
-    setErrors(result.errors);
-    return result.valid;
-  };
-
   const handleBlur = (field: string) => {
     setTouched((prev) => ({ ...prev, [field]: true }));
     const result = validateStep2(data);
@@ -36,9 +30,11 @@ export default function Step2ProfileDetails({
 
   const handleNext = () => {
     setTouched({ username: true, bio: true });
-    const valid = validate();
-    if (!valid) {
-      const firstErrorField = ['username', 'bio'].find((f) => errors[f]);
+    const result = validateStep2(data);
+    setErrors(result.errors);
+
+    if (!result.valid) {
+      const firstErrorField = ['username', 'bio'].find((f) => result.errors[f]);
       if (firstErrorField) {
         const el = document.getElementById(firstErrorField);
         el?.focus();
@@ -74,7 +70,6 @@ export default function Step2ProfileDetails({
           placeholder="jane_doe"
           error={getError('username')}
           required
-          maxLength={20}
           autoComplete="username"
         />
 

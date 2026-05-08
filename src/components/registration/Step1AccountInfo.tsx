@@ -14,12 +14,6 @@ export default function Step1AccountInfo({ data, onChange, onNext }: Step1Props)
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const firstErrorRef = useRef<HTMLInputElement | null>(null);
 
-  const validate = (): boolean => {
-    const result = validateStep1(data);
-    setErrors(result.errors);
-    return result.valid;
-  };
-
   const handleBlur = (field: string) => {
     setTouched((prev) => ({ ...prev, [field]: true }));
     const result = validateStep1(data);
@@ -37,11 +31,13 @@ export default function Step1AccountInfo({ data, onChange, onNext }: Step1Props)
       confirmPassword: true,
     };
     setTouched(allTouched);
-    const valid = validate();
-    if (!valid) {
-      // Focus first invalid field
+
+    const result = validateStep1(data);
+    setErrors(result.errors);
+
+    if (!result.valid) {
       const firstErrorField = ['fullName', 'email', 'password', 'confirmPassword'].find(
-        (f) => errors[f],
+        (f) => result.errors[f],
       );
       if (firstErrorField) {
         const el = document.getElementById(firstErrorField);
@@ -79,7 +75,6 @@ export default function Step1AccountInfo({ data, onChange, onNext }: Step1Props)
           placeholder="Jane Doe"
           error={getError('fullName')}
           required
-          maxLength={50}
           autoComplete="name"
         />
 
@@ -135,9 +130,6 @@ export default function Step1AccountInfo({ data, onChange, onNext }: Step1Props)
           Next
         </button>
       </div>
-
-      {/* Hidden ref for focus management */}
-      <input ref={firstErrorRef} className="sr-only" aria-hidden="true" readOnly tabIndex={-1} />
     </div>
   );
 }

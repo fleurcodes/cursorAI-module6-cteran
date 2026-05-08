@@ -37,7 +37,7 @@ export function validateStep1(data: Step1Data): ValidationResult {
   }
 
   if (!data.confirmPassword) {
-    errors.confirmPassword = 'Please confirm your password';
+    errors.confirmPassword = 'Confirm password is required';
   } else if (data.confirmPassword !== data.password) {
     errors.confirmPassword = 'Passwords do not match';
   }
