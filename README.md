@@ -112,3 +112,7 @@ See [RUNNING.md](RUNNING.md) for detailed setup and run instructions.
 ## Testing
 
 See [TESTING.md](TESTING.md) for detailed testing instructions and examples.
+
+Playwright report results
+
+<img width="999" height="943" alt="image" src="https://github.com/user-attachments/assets/c2ae9377-48bf-411e-9898-b9b7a03010ba" />
